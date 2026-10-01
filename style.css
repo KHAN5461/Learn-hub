@@ -26,6 +26,11 @@ input {
     display: none;
 }
 
+.disable-flipping label,
+.disable-flipping .back_cover {
+    pointer-events: none !important;
+}
+
 /* FLIP BOOK */
 #flip_book {
     width: 298px;

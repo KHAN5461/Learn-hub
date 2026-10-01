@@ -45,9 +45,9 @@ export default function FlipBook({
 
   const isMobile = windowDimensions.width < 768;
 
-  // Strict fitting on mobile to prevent any scrolling or overflow
-  const maxMobileWidth = Math.min(windowDimensions.width * 0.88, 360);
-  const maxMobileHeight = Math.min(windowDimensions.height * 0.82, 530);
+  // Slightly larger mobile dimensions for better readability
+  const maxMobileWidth = Math.min(windowDimensions.width * 0.94, 395);
+  const maxMobileHeight = Math.min(windowDimensions.height * 0.88, 580);
   const mobileHeightFromWidth = Math.round(maxMobileWidth * 1.414);
 
   const bookWidth = isMobile

@@ -9,7 +9,7 @@ export default function StudySuperpowers() {
   ];
 
   return (
-    <div className="w-full h-full bg-[#f6eee3] text-stone-900 flex flex-col justify-between p-7 sm:p-10 select-none relative overflow-hidden font-sans border-r border-stone-300">
+    <div className="w-full h-full bg-[#f6eee3] text-stone-900 flex flex-col justify-between p-5 sm:p-8 lg:p-9 select-none relative overflow-hidden font-sans border-r border-stone-300">
       {/* Header */}
       <div className="relative z-10">
         <div className="flex items-center justify-between border-b border-stone-300 pb-2">

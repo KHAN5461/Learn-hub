@@ -34,22 +34,22 @@ export default function SignUpForm({ onSignUp, onGoToSignIn }) {
   };
 
   return (
-    <div className="w-full h-full bg-[#faf7f2] text-stone-900 flex flex-col justify-between p-7 sm:p-10 select-none relative overflow-hidden font-sans border-l border-stone-200">
+    <div className="w-full h-full bg-[#faf7f2] text-stone-900 flex flex-col justify-between p-5 sm:p-8 lg:p-9 select-none relative overflow-hidden font-sans border-l border-stone-200">
       {/* Header */}
-      <div className="relative z-10 pt-1">
-        <span className="text-[11px] font-mono tracking-widest uppercase font-semibold text-stone-500">
+      <div className="relative z-10 pt-0.5">
+        <span className="text-[10px] sm:text-[11px] font-mono tracking-widest uppercase font-semibold text-stone-500">
           Registration
         </span>
-        <h2 className="text-2xl sm:text-3xl font-serif font-bold tracking-tight mt-1.5 text-stone-900">
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-serif font-bold tracking-tight mt-1 text-stone-900">
           Sign Up
         </h2>
-        <p className="text-xs sm:text-sm mt-1.5 font-normal leading-relaxed text-stone-600">
+        <p className="text-[11px] sm:text-xs mt-1 font-normal leading-relaxed text-stone-600">
           Create your account to start studying with AI.
         </p>
       </div>
 
       {/* Form Fields */}
-      <form onSubmit={handleSubmit} className="relative z-10 space-y-3.5 my-auto py-1">
+      <form onSubmit={handleSubmit} className="relative z-10 space-y-2.5 sm:space-y-3 my-auto py-1">
         {errorMessage && (
           <div className="p-2.5 rounded-xl border bg-red-50 border-red-200 text-red-700 text-xs font-medium">
             {errorMessage}

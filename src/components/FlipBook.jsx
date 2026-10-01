@@ -7,8 +7,8 @@ import FeatureManifesto from './auth/FeatureManifesto';
 import StudySuperpowers from './auth/StudySuperpowers';
 import { ArrowRight, BookOpen, Compass } from 'lucide-react';
 
-const DESKTOP_BOOK_WIDTH = 480;
-const DESKTOP_BOOK_HEIGHT = 680;
+const DESKTOP_BOOK_WIDTH = 415;
+const DESKTOP_BOOK_HEIGHT = 585;
 
 export default function FlipBook({
   theme = 'dark',
@@ -45,8 +45,9 @@ export default function FlipBook({
 
   const isMobile = windowDimensions.width < 768;
 
-  const maxMobileWidth = Math.min(windowDimensions.width * 0.96, windowDimensions.width - 8);
-  const maxMobileHeight = windowDimensions.height - 32;
+  // Strict fitting on mobile to prevent any scrolling or overflow
+  const maxMobileWidth = Math.min(windowDimensions.width * 0.88, 360);
+  const maxMobileHeight = Math.min(windowDimensions.height * 0.82, 530);
   const mobileHeightFromWidth = Math.round(maxMobileWidth * 1.414);
 
   const bookWidth = isMobile
@@ -66,7 +67,7 @@ export default function FlipBook({
     // Leaf 0: Front Cover (Oxford Blue) & Feature Manifesto (Parchment)
     {
       front: (
-        <div className="relative w-full h-full flex flex-col justify-between p-8 sm:p-12 text-white select-none overflow-hidden bg-[#0c192c] border-l-[3px] border-[#070e1a] shadow-2xl">
+        <div className="relative w-full h-full flex flex-col justify-between p-6 sm:p-9 lg:p-10 text-white select-none overflow-hidden bg-[#0c192c] border-l-[3px] border-[#070e1a] shadow-2xl">
           {/* Subtle realistic book edge shading */}
           <img
             src="/assets/images/flip_book_edge_shading.webp"

@@ -39,7 +39,7 @@ export default function PageLeaf({
       initial={false}
       animate={{
         rotateY: isFlipped ? -180 : 0,
-        z: isFlipping ? 20 : zOffset,
+        z: isFlipping ? 22 : zOffset,
       }}
       transition={{
         rotateY: {
@@ -79,11 +79,11 @@ export default function PageLeaf({
           className="absolute inset-0 pointer-events-none z-30"
           initial={false}
           animate={{
-            opacity: isFlipping ? 0.25 : 0,
+            opacity: isFlipping ? 0.35 : 0,
           }}
           transition={{ duration: 0.3 }}
           style={{
-            background: 'linear-gradient(to right, rgba(0,0,0,0.4) 0%, rgba(255,255,255,0.3) 50%, rgba(0,0,0,0.3) 100%)',
+            background: 'linear-gradient(90deg, rgba(0,0,0,0.45) 0%, rgba(255,255,255,0.4) 40%, rgba(0,0,0,0.3) 75%, transparent 100%)',
           }}
         />
 
@@ -135,11 +135,11 @@ export default function PageLeaf({
           className="absolute inset-0 pointer-events-none z-30"
           initial={false}
           animate={{
-            opacity: isFlipping ? 0.25 : 0,
+            opacity: isFlipping ? 0.35 : 0,
           }}
           transition={{ duration: 0.3 }}
           style={{
-            background: 'linear-gradient(to left, rgba(0,0,0,0.4) 0%, rgba(255,255,255,0.3) 50%, rgba(0,0,0,0.3) 100%)',
+            background: 'linear-gradient(270deg, rgba(0,0,0,0.45) 0%, rgba(255,255,255,0.4) 40%, rgba(0,0,0,0.3) 75%, transparent 100%)',
           }}
         />
 

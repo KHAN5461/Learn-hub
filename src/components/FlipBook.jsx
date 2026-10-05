@@ -99,9 +99,9 @@ export default function FlipBook({
 
           {/* Main Hero Copy */}
           <div className="relative z-10 flex-1 flex flex-col justify-center space-y-5 my-auto max-w-[360px]">
-            {/* Headline */}
+            {/* Headline with metallic foil luster */}
             <div className="space-y-1.5">
-              <h1 className="text-4xl sm:text-[46px] font-black tracking-tight text-white leading-[1.08]">
+              <h1 className="text-4xl sm:text-[46px] font-black tracking-tight text-white leading-[1.08] gold-foil-shimmer drop-shadow-sm">
                 Study smarter.
               </h1>
               <h1 className="text-4xl sm:text-[46px] font-black tracking-tight leading-[1.08] text-slate-300">
@@ -314,6 +314,24 @@ export default function FlipBook({
               theme={theme}
             />
           ))}
+
+          {/* Silk Spine Bookmark Ribbon (Drapes naturally when open) */}
+          <motion.div
+            initial={false}
+            animate={{
+              opacity: isBookClosed ? 0 : 0.95,
+              y: isBookClosed ? -12 : 0,
+              rotate: isBookClosed ? 0 : 3.5,
+            }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+            className="absolute -top-3 left-[1px] w-[8px] h-[64px] silk-ribbon rounded-b-sm pointer-events-none z-[160]"
+            style={{
+              transformOrigin: 'top center',
+            }}
+          >
+            {/* Cut chevron notch at ribbon tip */}
+            <div className="absolute -bottom-1 left-0 right-0 h-1.5 bg-transparent border-t-[3px] border-l-[4px] border-r-[4px] border-l-transparent border-r-transparent border-t-[#9a3412]" />
+          </motion.div>
 
           {/* Dynamic Floor Contact Shadows & Textures Below */}
           {/* Layer 1: Sharp crisp contact occlusion beneath spine and bottom edge */}

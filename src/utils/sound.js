@@ -22,6 +22,14 @@ class SoundFX {
     return this.enabled;
   }
 
+  setMuted(muted) {
+    this.enabled = !muted;
+  }
+
+  isMuted() {
+    return !this.enabled;
+  }
+
   playPageFlip(speed = 1.0) {
     if (!this.enabled) return;
     try {
@@ -30,8 +38,8 @@ class SoundFX {
 
       const now = this.ctx.currentTime;
       
-      // 1. White noise buffer for paper friction
-      const bufferSize = this.ctx.sampleRate * 0.25;
+      // 1. High-frequency paper edge friction (white noise)
+      const bufferSize = Math.floor(this.ctx.sampleRate * 0.28);
       const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
       const data = buffer.getChannelData(0);
       for (let i = 0; i < bufferSize; i++) {
@@ -44,27 +52,27 @@ class SoundFX {
       // Bandpass filter to sculpt the airy paper rustle
       const filter = this.ctx.createBiquadFilter();
       filter.type = 'bandpass';
-      filter.frequency.setValueAtTime(800, now);
-      filter.frequency.exponentialRampToValueAtTime(2400 / speed, now + 0.08);
-      filter.frequency.exponentialRampToValueAtTime(400, now + 0.22);
-      filter.Q.value = 3.0;
+      filter.frequency.setValueAtTime(900, now);
+      filter.frequency.exponentialRampToValueAtTime(2600 / speed, now + 0.07);
+      filter.frequency.exponentialRampToValueAtTime(350, now + 0.24);
+      filter.Q.value = 2.8;
 
       // Volume envelope for natural swoosh
       const gainNode = this.ctx.createGain();
       gainNode.gain.setValueAtTime(0.001, now);
-      gainNode.gain.linearRampToValueAtTime(0.2, now + 0.04);
-      gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+      gainNode.gain.linearRampToValueAtTime(0.22, now + 0.04);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.24);
 
-      // 2. Subtle low frequency whoosh
+      // 2. Low-frequency paper body resonance
       const osc = this.ctx.createOscillator();
       const oscGain = this.ctx.createGain();
       osc.type = 'sine';
-      osc.frequency.setValueAtTime(140, now);
-      osc.frequency.exponentialRampToValueAtTime(70, now + 0.18);
+      osc.frequency.setValueAtTime(150, now);
+      osc.frequency.exponentialRampToValueAtTime(65, now + 0.2);
       
       oscGain.gain.setValueAtTime(0.001, now);
-      oscGain.gain.linearRampToValueAtTime(0.12, now + 0.03);
-      oscGain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
+      oscGain.gain.linearRampToValueAtTime(0.14, now + 0.03);
+      oscGain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
 
       // Connect graph
       noise.connect(filter);
@@ -75,9 +83,9 @@ class SoundFX {
       oscGain.connect(this.ctx.destination);
 
       noise.start(now);
-      noise.stop(now + 0.25);
+      noise.stop(now + 0.28);
       osc.start(now);
-      osc.stop(now + 0.2);
+      osc.stop(now + 0.22);
     } catch {
       // Audio context might be restricted before interaction
     }
@@ -94,17 +102,17 @@ class SoundFX {
       const gain = this.ctx.createGain();
       
       osc.type = 'triangle';
-      osc.frequency.setValueAtTime(220, now);
-      osc.frequency.exponentialRampToValueAtTime(40, now + 0.08);
+      osc.frequency.setValueAtTime(240, now);
+      osc.frequency.exponentialRampToValueAtTime(45, now + 0.09);
 
-      gain.gain.setValueAtTime(0.15, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+      gain.gain.setValueAtTime(0.18, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.09);
 
       osc.connect(gain);
       gain.connect(this.ctx.destination);
 
       osc.start(now);
-      osc.stop(now + 0.08);
+      osc.stop(now + 0.09);
     } catch {
       // Ignore
     }

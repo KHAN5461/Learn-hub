@@ -2,13 +2,14 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import FlipBook from './components/FlipBook';
 import FullDashboard from './components/dashboard/FullDashboard';
 import { soundFx } from './utils/sound';
-import { Sun, Moon } from 'lucide-react';
+import { Sun, Moon, Volume2, VolumeX } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function App() {
   const totalLeaves = 3;
   const [theme, setTheme] = useState('dark'); // 'dark' | 'light'
   const [view, setView] = useState('book'); // 'book' | 'dashboard'
+  const [isMuted, setIsMuted] = useState(false);
 
   const [flippedCount, setFlippedCount] = useState(totalLeaves);
   const [flippingIndex, setFlippingIndex] = useState(null);
@@ -20,6 +21,11 @@ export default function App() {
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
+  const toggleSound = () => {
+    const next = soundFx.toggleMute();
+    setIsMuted(!next);
   };
 
   const [user, setUser] = useState({
@@ -180,8 +186,24 @@ export default function App() {
               }`}
             />
 
-            {/* Top Right Clean Theme Toggle */}
-            <div className="fixed top-6 right-6 z-40">
+            {/* Top Right Portal Controls (Theme & Audio) */}
+            <div className="fixed top-6 right-6 z-40 flex items-center gap-2.5">
+              {/* Sound Toggle */}
+              <motion.button
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.92 }}
+                onClick={toggleSound}
+                className={`p-3 rounded-full border shadow-lg backdrop-blur-md transition-all cursor-pointer flex items-center justify-center ${
+                  isDark
+                    ? 'bg-black/40 border-white/10 text-slate-300 hover:bg-black/60 hover:text-white'
+                    : 'bg-white/80 border-black/10 text-slate-700 hover:bg-white hover:text-slate-950 shadow-stone-300/50'
+                }`}
+                title={isMuted ? 'Unmute Audio' : 'Mute Audio'}
+              >
+                {isMuted ? <VolumeX className="w-5 h-5 text-rose-400" /> : <Volume2 className="w-5 h-5" />}
+              </motion.button>
+
+              {/* Theme Toggle */}
               <motion.button
                 whileHover={{ scale: 1.08 }}
                 whileTap={{ scale: 0.92 }}

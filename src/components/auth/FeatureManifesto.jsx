@@ -28,9 +28,13 @@ export default function FeatureManifesto() {
           <span className="text-[10px] uppercase font-mono tracking-[0.25em] font-bold text-stone-500">
             EX LIBRIS • STUDY OS
           </span>
-          <span className="text-[10px] font-mono text-stone-400">
-            EDITION 2026
-          </span>
+          {/* Circular vintage academy seal */}
+          <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full border border-stone-400/40 bg-stone-100/80 shadow-[inset_0_1px_2px_rgba(0,0,0,0.06)]">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-600 animate-pulse" />
+            <span className="text-[9px] font-mono text-stone-600 font-bold uppercase tracking-wider">
+              VERIFIED 2026
+            </span>
+          </div>
         </div>
         <h3 className="text-xl sm:text-2xl font-serif font-bold tracking-tight mt-3 text-stone-900">
           Turn passive reading into active understanding.
